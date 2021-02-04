@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Krys... aussi</title>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
+    </head>
+    <body>
+        <div id="app">
+            <div id="top_ctn">
+                <div class="ctnIcone"><div class="icone"></div></div>
+                <div class="textDiv"></div>
+                <div class="panelInfo"></div>
+            </div>
+            <div id="btm_ctn">
+                <div class="elt_btm"></div>
+            </div>
+        </div>
+    </body>
+
+
+    <script type="module">
+        /* Imports */
+        import * as pl1 from "../js/pl1.js"
+        import * as pl2 from "../js/pl2.js"
+        import * as pl3 from "../js/pl3.js"
+        import * as pl4 from "../js/pl4.js"
+
+        window.addEventListener('load',()=>{
+            init()
+        },true);
+
+        var lignePlan = [pl1.pl1, pl2.pl2,pl3.pl3,pl4.pl4];
+        /*
+         Lance le premier plan de travail au chargement de la page
+         Puis lance tous les autres plans les uns derrières les autres avec un temps de 3 secondes entre chaque plan
+         (setInterval())
+         */
+        function init(){
+            lignePlan[0].forEach(eltOfPl =>{
+                        
+                        drawItem(eltOfPl);
+                        setTimeout(()=>{
+                            leaveItem(eltOfPl)
+                        },2000)
+            })
+            var i =1;
+            var interval = setInterval(function(){
+                    var pl = lignePlan[i];
+                    pl.forEach(eltOfPl =>{
+                        
+                        drawItem(eltOfPl);
+                        setTimeout(()=>{
+                            leaveItem(eltOfPl)
+                        },2000)
+                    })
+                    i++;
+                    if(i>=lignePlan.length)
+                        clearInterval(interval);
+            },3000)
+            
+        }
+
+        /* Ajoute l'élément au DOM et fait son entrée */
+        function drawItem(eltOfPl){
+            if(eltOfPl.setElement)eltOfPl.setElement();
+            setTimeout(()=>{
+                if(eltOfPl.animEntree)eltOfPl.animEntree()  
+            },100) 
+        }
+
+        /* Fait sortir l'élément et le supprime du DOM*/
+        function leaveItem(eltOfPl){
+            if(eltOfPl.animSortie) eltOfPl.animSortie()    
+        }
+    </script>
+</html>

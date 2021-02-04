@@ -1,0 +1,184 @@
+/*import de la police*/
+@font-face {
+    font-family: "Helvetica-Neue";
+    src: url("./police/HelveticaNeueLTStdCn.woff") format("woff");
+}
+
+/*
+style des éléments initiaux
+*/
+html, body{
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica-Neue";
+    font-size: 12px;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4facdb;
+}
+
+#app{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    min-width: 375px;
+    min-height: 667px;
+    height: 100%;
+    overflow: hidden;
+    justify-content: space-between;
+}
+
+/*
+Défini le style de chaque partie de la pub
+top_ctn : icone et texte
+btm_ctn : video ou carte
+*/
+#top_ctn{height: 60%; min-height: calc(667px*2/3);}
+#btm_ctn{height: 45%; position:relative; min-height: calc(667px/3);}
+#top_ctn, #btm_ctn{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    justify-content: space-between;
+}
+
+/* CSS DE L'ICONE KRYS */
+/* style toujours actif */
+.ctnIcone{
+    width: 100%;
+    height: 50%;
+    display: flex;
+}
+.icone{
+    background-image: url("../assets/logo.png");
+    display: flex;
+    background-repeat: no-repeat;
+    background-size: contain;  
+}
+
+/* style appliqué avant l'apparition de l'icone */
+.iconeStart{
+    width: 120px;
+    height: 120px;
+    margin-top: 107px;
+    margin-left: 36%;
+}
+
+/*
+style appliqué une fois que l'icone a fini son entrée dans la page - 
+transition permet un effet de "déplacement et de rétrecicement" entre cette classe est la classe iconeStart
+*/
+.iconeEnd{
+    width: 80px;
+    height: 80px;
+    transition : all .5s ease;
+}
+
+
+/*CSS POUR LE TEXTE CENTRAL*/
+/* style toujours actif */
+.textDiv{
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    align-items: center;
+    font-size: 7rem;
+    font-weight:bold;
+}
+
+/* style appliqué avant l'apparition du texte - effet slide */
+.textEnterSlide{
+    transform:translateX(150rem)
+}
+
+/* style appliqué une fois le texte entrée dans la page - effet slide */
+.textFinishEnterSlide{
+    transform:translateX(0);
+    transition: all .5s ease-in ;
+}
+
+/* style appliqué lorsque le texte va quitter la page - effet Fade */
+.textLeaveFade{
+    opacity: 0;
+    transition: all .5s ease;
+}
+
+/* style appliqué avant l'apparition du texte (utilisé pour le plan de travail 4) - effet fade */
+.textEnterFade{
+    opacity : 0;
+}
+
+/* style appliqué une fois le texte entrée dans la page - effet fade */
+.textFinishEnterFade{
+    opacity:1;
+    transition: all .5s ease-in ;
+}
+
+/* BOUTON CSS (PLAN 4) */
+/* style général */
+.divMeetBtn{
+    display: flex;
+    justify-content: center;
+}
+.divMeetBtn > div{
+    display: flex;
+    border: solid 1px white;
+    padding: 1rem;
+}
+.divMeetBtn > div > span:nth-child(2){
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
+    padding: 5px 0 0 0;
+}
+
+/* INFORMATION PANEL (BAS DE LA PARTIE HAUTE DE LA PUB) CSS */
+/* style général */
+.panelInfo{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1rem;
+}
+.panelInfo span{font-size: 1rem;}
+
+
+
+/* VIDEO CSS*/
+.elt_btm{
+    width:100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+}
+
+.elt_btm video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: 375px;
+}
+
+/* CARTE CSS */
+/* style général de iframe qui contient la map */
+#btm_ctn iframe{
+    position: absolute;
+    top:0;left:0;right: 0;bottom: 0;
+    width: 100%;
+    height: 100%;
+    border:0
+}
+
+/* style appliqué avant que la carte n'apparaisse */
+.beforeTranslateFromBottom{
+    transform:translateY(100%);
+}
+
+/* style appliqué une fois que l'élément est entrée dans la page*/
+.afterTranslateFromBottom{
+    transform: translateY(0);
+    transition: all 1s ease-in-out;
+}
