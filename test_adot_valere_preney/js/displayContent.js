@@ -5,7 +5,7 @@
  * Pour chaque ligne de text comprise dans la propriété content de obj on crée un élément span,
  * on lui défini ses propres propriétés de styles définies dans la propriété content de obj aussi.
  * on lui attribut une classe de départ (voir startClass dans l'objet text)
- * puis on l'ajoute à son élément père.
+ * puis on l'ajoute à son élément parent.
  */
 function setElementText(obj){
     var parent = document.querySelector(`.${obj.parent}`);
